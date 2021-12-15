@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-const fs = require('fs');
-const dataColour = require("../public/colours.json");
-
 /* GET home page. */
 router.get('/', async function (req, res, next) {
 
