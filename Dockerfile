@@ -6,7 +6,7 @@
 
 # Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
 
-ARG NODE_VERSION=18.0.0
+ARG NODE_VERSION=21.7.3
 
 FROM node:${NODE_VERSION}-alpine
 
@@ -24,14 +24,17 @@ COPY package-lock.json ./
 
 RUN npm install
 
-# Run the application as a non-root user.
-USER node
-
 # Copy the rest of the source files into the image.
 COPY . .
 
+# fix file permissions as we need to be able to write and read to public folder as node
+RUN chown -R node:node ./public 
+
+# Run the application as a non-root user.
+USER node
+
 # Expose the port that the application listens on.
-# EXPOSE 3000
+#EXPOSE 3000
 
 # Run the application.
 CMD node ./bin/www

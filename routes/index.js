@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+// load json files
+let dataColour = require('../public/colours.json');
+let dataAnimal = require('../public/animals.json');
+
 /* GET home page. */
 router.get('/', async function (req, res, next) {
-
-    // load json files
-    let dataColour = require('../public/colours.json');
-    let dataAnimal = require('../public/animals.json');
 
     let colour = null
     let animal = null
